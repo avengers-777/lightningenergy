@@ -1,0 +1,5 @@
+[engine:junit-jupiter]/[class:com.alameda.lightningenergy.LightningenergyApplicationTests]/[method:contextLoads()]
+[engine:junit-jupiter]/[class:com.alameda.lightningenergy.service.TronResourceExchangeServiceImplTest]/[method:energyToTrx()]
+[engine:junit-jupiter]/[class:com.alameda.lightningenergy.service.TronResourceExchangeServiceImplTest]/[method:bandwidthToTrx()]
+[engine:junit-jupiter]/[class:com.alameda.lightningenergy.service.TronResourceExchangeServiceImplTest]/[method:trxToBandwidth()]
+[engine:junit-jupiter]/[class:com.alameda.lightningenergy.service.TronResourceExchangeServiceImplTest]/[method:trxToEnergy()]
