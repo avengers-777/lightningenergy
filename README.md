@@ -2,7 +2,7 @@
 # LightningEnergy
 
 **LightningEnergy** 是一个基于TRON区块链的能量租赁与自动回收平台。此平台采用Java、Spring Boot WebFlux，以及MongoDB和Redis数据库，提供高性能和响应式的Web应用程序环境，旨在为用户提供一种有效、透明的能量管理解决方案。
-
+![前端图](home.png)
 ## 相关项目
 
 - **网站前端**：[Lightning Energy - Frontend](https://github.com/avengers-777/lightning_energy) 使用Next.js, TypeScript和React技术栈构建。
@@ -114,7 +114,7 @@ tron:
 
 ### 设置私钥和地址
 
-1. 使用你的TRON钱包或通过TRON网络的其他可靠工具生成一个新的私钥和地址。
+1. 使用你的TRON钱包或通过TRON网络的其他可靠工具生成一个新的私钥和地址(空账户即可)。
 2. 将私钥复制到 `default-private-key` 字段。
 3. 将相应的TRON地址复制到 `default-address` 字段。
 
@@ -124,6 +124,75 @@ tron:
 - **安全存储**：确保这些信息在安全的环境中存储和使用，避免潜在的安全风险。
 
 确保完成上述配置后，项目应能够成功连接到TRON区块链，并执行所需的操作。
+
+
+## 如何使用
+
+
+
+### 注册管理员账号
+
+管理员账号的注册需通过API接口进行。由于安全和管理原因，**只有第一个管理员可以使用此接口进行注册**。以下是注册过程的详细说明：
+
+1. **编写注册请求**：
+   - 使用Postman或其他API测试工具，准备一个POST请求，目标地址为 `/a/v1/pub/admin/register`。
+   - 在请求体中包含以下信息：
+     ```json
+     {
+       "name": "管理员名字",
+       "ethereumAddress": "你的以太坊地址",
+       "permissions": [],
+       "status": "ACTIVE"
+     }
+     ```
+   - 确保以太坊地址是使用MetaMask提供的地址，且地址通过 `checksumAddress` 方法转化为校验和地址。
+
+2. **发送注册请求**：
+   - 确保Postman中设置了正确的Content-Type（通常为 `application/json`）。
+   - 发送POST请求，系统将处理注册。
+
+3. **验证注册结果**：
+   - 系统会返回相应的结果，包括管理员的详细信息和注册状态。
+
+通过这种方式，你可以确保管理员账号的注册既安全又符合系统的管理规定。使用MetaMask的签名验证与API接口的结合使用，可以有效地保障后台的安全性和完整性。
+
+
+### 登录管理后台
+
+**LightningEnergy** 的管理后台使用MetaMask钱包进行身份验证。在管理界面中使用MetaMask进行登录，但在管理员账号的创建和注册需要通过另一种方式进行，具体步骤如下：
+
+1. **安装MetaMask**：
+   - 如果你还没有安装MetaMask扩展，可以访问 [MetaMask官网](https://metamask.io/) 下载并安装到你的浏览器。
+
+2. **准备一个MetaMask地址**：
+   - 确保你的MetaMask钱包中有至少一个地址。此地址无需持有任何资产，仅用于身份验证。
+
+3. **登录**：
+   - 打开管理后台的登录页面。
+   - 点击登录按钮后，MetaMask将弹出请求签名的消息。
+   - 确认签名操作，系统将使用MetaMask的签名机制来验证你的身份。
+
+
+
+### 账号资源与授权
+
+登录后台后，管理员需要完成以下步骤来配置和启动能量代理与回收功能：
+
+1. **创建一个TRON账号**：
+   - 在控制台中选择创建TRON账号的选项。
+   - 按照指示完成账号的创建。创建完成后，你将获得一个新的TRON地址。
+
+2. **授权Active Permission**：
+   - 使用你的主TRON钱包（资源账号）授权给新创建的TRON账号授权Active Permission（代理资源，回收资源）。这允许系统自动代理资源和回收资源。
+
+
+通过完成上述步骤，管理后台就配置完成了，能够开始自动代理与回收功能，前台页面能够正常工作。
+
+### 注意事项
+
+- 保证在操作中使用正确的TRON地址和密钥，避免资金损失。
+- 使用MetaMask进行的所有操作都应仔细验证，以确保安全性。
+
 
 ## 如何贡献
 
@@ -143,3 +212,5 @@ tron:
 
 - **项目链接**: [https://github.com/avengers-777/LightningEnergy](https://github.com/avengers-777/LightningEnergy)
 - **Telegram**: [@bitcyber](https://t.me/bitcyber)
+
+
